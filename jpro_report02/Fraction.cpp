@@ -72,13 +72,13 @@ Fraction operator/(Fraction f0, Fraction f1) {
 }
 
 //”äŠr‰‰ŽZŽq
-bool Fraction::operator<(const Fraction frac) const {
+bool Fraction::operator<(Fraction frac) const {
 	return this->getScaler() < frac.getScaler();
 }
-bool Fraction::operator>(const Fraction frac) const {
+bool Fraction::operator>(Fraction frac) const {
 	return this->getScaler() > frac.getScaler();
 }
-bool Fraction::operator==(const Fraction frac) const {
+bool Fraction::operator==(Fraction frac) const {
 	return this->getScaler() == frac.getScaler();
 }
 

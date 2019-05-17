@@ -26,9 +26,9 @@ public:
 	void operator-=(Fraction frac);
 	void operator*=(Fraction frac);
 	void operator/=(Fraction frac);
-	bool operator<(const Fraction frac) const;
-	bool operator>(const Fraction frac) const;
-	bool operator==(const Fraction frac) const;
+	bool operator< (Fraction frac) const;
+	bool operator> (Fraction frac) const;
+	bool operator==(Fraction frac) const;
 	friend istream& operator>>(istream& stream, Fraction& frac);
 };
 
