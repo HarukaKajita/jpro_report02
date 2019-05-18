@@ -22,22 +22,22 @@ public:
 	double getScaler() const { return (double)numrator / denominator; }
 	bool isMinus() const;
 	//四則演算
-	void operator+=(Fraction frac);
-	void operator-=(Fraction frac);
-	void operator*=(Fraction frac);
-	void operator/=(Fraction frac);
-	bool operator< (Fraction frac) const;
-	bool operator> (Fraction frac) const;
-	bool operator==(Fraction frac) const;
-	friend istream& operator>>(istream& stream, Fraction& frac);
+	void operator+=(const Fraction&);
+	void operator-=(const Fraction&);
+	void operator*=(const Fraction&);
+	void operator/=(const Fraction&);
+	bool operator< (const Fraction&) const;
+	bool operator> (const Fraction&) const;
+	bool operator==(const Fraction&) const;
+	friend istream& operator>>(istream&, Fraction&);
 };
 
 //四則演算
-Fraction operator+(Fraction f0, Fraction f1);
-Fraction operator-(Fraction f0, Fraction f1);
-Fraction operator*(Fraction f0, Fraction f1);
-Fraction operator/(Fraction f0, Fraction f1);
+Fraction operator+(const Fraction&, const Fraction&);
+Fraction operator-(const Fraction&, const Fraction&);
+Fraction operator*(const Fraction&, const Fraction&);
+Fraction operator/(const Fraction&, const Fraction&);
 
 //入出力（入力のみfriend）
-istream& operator>>(istream& stream, Fraction& frac);
-ostream& operator<<(ostream& stream, const Fraction frac);
+istream& operator>>(istream&, Fraction&);
+ostream& operator<<(ostream&, const Fraction&);

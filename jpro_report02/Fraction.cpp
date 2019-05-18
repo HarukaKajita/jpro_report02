@@ -13,7 +13,7 @@ Fraction::Fraction(int numrator, int denominator) {
 }
 
 //Žl‘¥‰‰ŽZŽq
-void Fraction::operator+=(Fraction frac) {
+void Fraction::operator+=(const Fraction& frac) {
 	//•ª•ê‚ÌÅ¬Œö”{”‚ð‹‚ß‚Ä•ª•ê‚ð‘µ‚¦‚Ä‰ÁŽZ
 	//¦c++17 or later
 	int LCM = lcm(this->getDenominator(), frac.getDenominator());
@@ -28,7 +28,7 @@ void Fraction::operator+=(Fraction frac) {
 	reduce();
 	adjustSign();
 }
-void Fraction::operator-=(Fraction frac) {
+void Fraction::operator-=(const Fraction& frac) {
 	//•ª•ê‚ÌÅ¬Œö”{”‚ð‹‚ß‚Ä•ª•ê‚ð‘µ‚¦‚ÄŒ¸ŽZ
 	//¦c++17 or later
 	int LCM = lcm(this->getDenominator(), frac.getDenominator());
@@ -43,42 +43,48 @@ void Fraction::operator-=(Fraction frac) {
 	reduce();
 	adjustSign();
 }
-void Fraction::operator*=(Fraction frac) {
-	this->numrator *= frac.getNumerator(); this->denominator *= frac.getDenominator();
+void Fraction::operator*=(const Fraction& frac) {
+	this->numrator *= frac.getNumerator();
+	this->denominator *= frac.getDenominator();
 	reduce();
 	adjustSign();
 }
-void Fraction::operator/=(Fraction frac) {
-	this->numrator *= frac.getDenominator(); this->denominator *= frac.getNumerator();
+void Fraction::operator/=(const Fraction& frac) {
+	this->numrator *= frac.getDenominator();
+	this->denominator *= frac.getNumerator();
 	reduce();
 	adjustSign();
 }
 
-Fraction operator+(Fraction f0, Fraction f1) {
-	f0 += f1;
-	return f0;
+Fraction operator+(const Fraction& f0, const Fraction& f1) {
+	Fraction f = f0;
+	f += f1;
+	return f;
 }
-Fraction operator-(Fraction f0, Fraction f1) {
-	f0 -= f1;
-	return f0;
+Fraction operator-(const Fraction& f0, const Fraction& f1) {
+	Fraction f = f0;
+	f -= f1;
+	return f;
 }
-Fraction operator*(Fraction f0, Fraction f1) {
-	f0 *= f1;
-	return f0;
+Fraction operator*(const Fraction& f0, const Fraction& f1) {
+	Fraction f = f0;
+	f *= f1;
+	return f;
 }
-Fraction operator/(Fraction f0, Fraction f1) {
-	f0 /= f1;
-	return f0;
+Fraction operator/(const Fraction& f0, const Fraction& f1) {
+	Fraction f = f0;
+	f /= f1;
+	return f;
 }
 
 //”äŠr‰‰ŽZŽq
-bool Fraction::operator<(Fraction frac) const {
+bool Fraction::operator<(const Fraction& frac) const {
 	return this->getScaler() < frac.getScaler();
 }
-bool Fraction::operator>(Fraction frac) const {
+bool Fraction::operator>(const Fraction& frac) const {
 	return this->getScaler() > frac.getScaler();
 }
-bool Fraction::operator==(Fraction frac) const {
+bool Fraction::operator==(const Fraction& frac) const {
 	return this->getScaler() == frac.getScaler();
 }
 
@@ -96,7 +102,7 @@ istream& operator>>(istream& stream, Fraction& frac) {
 	frac.adjustSign();
 	return stream;
 }
-ostream& operator<<(ostream& stream, const Fraction frac) {
+ostream& operator<<(ostream& stream, const Fraction& frac) {
 	if (frac.getDenominator() == 1 || frac.getNumerator() == 0) stream << frac.getNumerator();
 	else stream << "(" << frac.getNumerator() << "/" << frac.getDenominator() << ")";
 	return stream;
